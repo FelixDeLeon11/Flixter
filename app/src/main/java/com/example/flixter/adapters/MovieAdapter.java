@@ -1,22 +1,30 @@
 package com.example.flixter.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.flixter.DetailActivity;
 import com.example.flixter.R;
 import com.example.flixter.models.Movie;
 
+import org.parceler.Parcels;
+
 import java.util.List;
+
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
 
@@ -50,12 +58,16 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+
+        RelativeLayout container;
         TextView tvTitle;
         TextView tvOverview;
         ImageView ivPoster;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            container = itemView.findViewById(R.id.container);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvOverview = itemView.findViewById(R.id.tvOverview);
             ivPoster = itemView.findViewById(R.id.ivPoster);
@@ -64,6 +76,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         public void bind(Movie movie) {
             tvTitle.setText(movie.getTitle());
             tvOverview.setText(movie.getOverview());
+
             String imageURL;
 
             //landscape mode
@@ -73,7 +86,22 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                 imageURL = movie.getPosterPath();
             }
 
+            int radius = 60; // corner radius, higher value = more rounded
+            int margin = 5;
             Glide.with(context).load(imageURL).into(ivPoster);
+
+            // Click listener on whole container
+            container.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View V){
+                    //Navigate to new activity
+                    Intent i = new Intent(context, DetailActivity.class);
+                    i.putExtra("movie", Parcels.wrap(movie));
+
+                    context.startActivity(i);
+                }
+            });
+
         }
     }
 }
