@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/Profile"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clipToPadding="false"
     android:fillViewport="true"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:transitionName="profile"
+    >
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -13,7 +15,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:transitionName="profile"
     tools:context=".DetailActivity">
 
     <com.google.android.youtube.player.YouTubePlayerView
@@ -51,6 +52,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="Sample Text" />
-
 </LinearLayout>
 </ScrollView>
