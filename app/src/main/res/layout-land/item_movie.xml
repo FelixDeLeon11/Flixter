@@ -37,4 +37,14 @@
         android:layout_marginEnd="0dp"
         android:layout_toEndOf="@+id/ivPoster"
         tools:text="ooooooovvvvvvvvveeeeeerrrrrrrrrrrvvvvviiiiiiieeeewwwwwwwwwwww" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="50dp"
+        android:layout_height="62dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="142dp"
+        android:layout_marginTop="65dp"
+        app:srcCompat="@drawable/youtube_" />
 </RelativeLayout>
